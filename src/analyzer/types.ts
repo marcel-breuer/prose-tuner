@@ -1,4 +1,5 @@
-import type { LanguageResolution, SupportedLanguage, TextRange } from '../index.js';
+import type { LanguageResolution, SupportedLanguage } from '../language/types.js';
+import type { TextRange } from '../parser/types.js';
 
 export type FindingCategory =
   | 'filler'
@@ -14,6 +15,20 @@ export type FindingCategory =
   | 'transition';
 
 export type FindingSeverity = 'info' | 'warning';
+
+export const FINDING_CATEGORIES = [
+  'filler',
+  'heading-density',
+  'lexical-redundancy',
+  'meta-commentary',
+  'nominal-style',
+  'paragraph-length',
+  'repeated-phrase',
+  'repeated-sentence-opening',
+  'sentence-length',
+  'sentence-monotony',
+  'transition',
+] as const;
 
 export interface StyleFinding {
   readonly category: FindingCategory;
