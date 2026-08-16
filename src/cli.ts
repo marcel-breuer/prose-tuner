@@ -4,6 +4,7 @@ import { createAnalysisReport, serializeAnalysisReport } from './analyzer/index.
 import { loadProjectConfig } from './config/index.js';
 import type { ProseTunerConfigInput } from './config/index.js';
 import type { ProseTunerMode } from './modes/index.js';
+import { assertSupportedOption } from './policy/index.js';
 
 export interface CliIo {
   readonly cwd: string;
@@ -78,6 +79,7 @@ function parseArguments(args: readonly string[]): {
       inputPath = argument;
       continue;
     }
+    assertSupportedOption(argument.slice(2));
     const value = args[index + 1];
     if (value === undefined || value.startsWith('--'))
       throw new CliError(`Missing value for ${argument}.`);

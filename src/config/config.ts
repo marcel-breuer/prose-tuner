@@ -2,6 +2,7 @@ import { access, readFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { parse } from 'yaml';
 import { z } from 'zod';
+import { assertNoProhibitedOptions } from '../policy/index.js';
 
 const languages = ['auto', 'de-DE', 'en-US', 'en-GB'] as const;
 const styles = [
@@ -128,6 +129,7 @@ async function findProjectConfig(cwd: string): Promise<string | null> {
 }
 
 function parseInput(input: unknown): ProseTunerConfigInput {
+  assertNoProhibitedOptions(input);
   const result = inputSchema.safeParse(input);
   if (result.success) return result.data;
   throw new ConfigValidationError(
