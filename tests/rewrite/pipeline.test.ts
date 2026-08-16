@@ -1,8 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import {
-  MockRewriteProvider,
-  runRewritePipeline,
-} from '../../src/rewrite/index.js';
+import { MockRewriteProvider, runRewritePipeline } from '../../src/rewrite/index.js';
 import { MockSemanticValidator } from '../../src/integrity/index.js';
 
 describe('rewrite pipeline', () => {
@@ -10,10 +7,10 @@ describe('rewrite pipeline', () => {
     const provider = new MockRewriteProvider((request) => ({
       text: request.text.replace('verbose', 'concise'),
     }));
-    const result = await runRewritePipeline(
-      '# Heading\n\nThis is verbose. “Quoted text.” `code`',
-      { language: 'en-US', provider },
-    );
+    const result = await runRewritePipeline('# Heading\n\nThis is verbose. “Quoted text.” `code`', {
+      language: 'en-US',
+      provider,
+    });
     expect(result).toMatchObject({
       text: '# Heading\n\nThis is concise. “Quoted text.” `code`',
       integrity: { status: 'passed' },

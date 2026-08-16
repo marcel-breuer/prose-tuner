@@ -1,9 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import {
-  executeRewrite,
-  MockRewriteProvider,
-} from '../../src/rewrite/index.js';
+import { executeRewrite, MockRewriteProvider } from '../../src/rewrite/index.js';
 
 describe('rewrite provider abstraction', () => {
   it('uses an injected deterministic provider without provider SDKs', async () => {
