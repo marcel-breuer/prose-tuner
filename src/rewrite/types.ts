@@ -25,6 +25,7 @@ export interface ResolvedRewriteProfile {
 }
 
 export interface RewriteRequest {
+  readonly instructions?: readonly string[];
   readonly language: SupportedLanguage;
   readonly text: string;
 }
