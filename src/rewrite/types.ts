@@ -1,5 +1,29 @@
 import type { SupportedLanguage } from '../language/types.js';
 
+export const REWRITE_STYLES = [
+  'neutral',
+  'professional',
+  'academic',
+  'technical',
+  'blog',
+  'concise',
+  'conversational',
+] as const;
+export const REWRITE_INTENSITIES = ['light', 'balanced', 'strong'] as const;
+export type RewriteStyle = (typeof REWRITE_STYLES)[number];
+export type RewriteIntensity = (typeof REWRITE_INTENSITIES)[number];
+
+export interface RewriteProfileOptions {
+  readonly intensity?: RewriteIntensity;
+  readonly style?: RewriteStyle;
+}
+
+export interface ResolvedRewriteProfile {
+  readonly instructions: readonly string[];
+  readonly intensity: RewriteIntensity;
+  readonly style: RewriteStyle;
+}
+
 export interface RewriteRequest {
   readonly language: SupportedLanguage;
   readonly text: string;
