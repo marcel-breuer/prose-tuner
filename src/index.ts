@@ -9,6 +9,7 @@ export * from './analyzer/index.js';
 export * from './config/index.js';
 export * from './integrity/index.js';
 export * from './modes/index.js';
+export * from './policy/index.js';
 export * from './language/index.js';
 export * from './parser/index.js';
 export * from './rewrite/index.js';
