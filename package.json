@@ -13,7 +13,9 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "format:check": "prettier --check .",
     "lint": "eslint . --max-warnings=0",
+    "release:check": "npm run format:check && npm run lint && npm run typecheck && npm test && npm run build && node scripts/verify-release.mjs && npm pack --dry-run",
     "test": "vitest run",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
